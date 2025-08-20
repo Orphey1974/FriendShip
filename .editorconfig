@@ -1,0 +1,65 @@
+# EditorConfig is awesome: https://EditorConfig.org
+
+# top-most EditorConfig file
+root = true
+
+# Unix-style newlines with a newline ending every file
+[*]
+charset = utf-8
+end_of_line = crlf
+insert_final_newline = true
+trim_trailing_whitespace = true
+indent_style = space
+indent_size = 4
+
+# Batch files
+[*.{bat,cmd}]
+charset = utf-8
+end_of_line = crlf
+
+# PowerShell files
+[*.ps1]
+charset = utf-8
+end_of_line = crlf
+
+# JavaScript/TypeScript files
+[*.{js,jsx,ts,tsx}]
+charset = utf-8
+end_of_line = lf
+indent_size = 2
+
+# JSON files
+[*.json]
+charset = utf-8
+end_of_line = lf
+indent_size = 2
+
+# Markdown files
+[*.md]
+charset = utf-8
+end_of_line = lf
+trim_trailing_whitespace = false
+
+# C# files
+[*.{cs,csproj}]
+charset = utf-8
+end_of_line = crlf
+indent_size = 4
+
+# XML files
+[*.{xml,csproj,props,targets}]
+charset = utf-8
+end_of_line = crlf
+indent_size = 2
+
+# YAML files
+[*.{yml,yaml}]
+charset = utf-8
+end_of_line = lf
+indent_size = 2
+
+# Makefile
+[Makefile]
+charset = utf-8
+end_of_line = lf
+indent_style = tab

@@ -1,6 +1,10 @@
 # FriendShip Solution Process Stopper (PowerShell)
 # Останавливает все процессы .NET и Node.js решения
 
+# Устанавливаем кодировку UTF-8
+[Console]::OutputEncoding = [System.Text.Encoding]::UTF8
+$OutputEncoding = [System.Text.Encoding]::UTF8
+
 Write-Host "🛑 FriendShip Solution - Остановка всех процессов..." -ForegroundColor Red
 Write-Host ""
 
