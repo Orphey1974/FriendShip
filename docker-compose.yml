@@ -1,0 +1,64 @@
+version: '3.8'
+
+services:
+  # API проект
+  friendship-api:
+    build:
+      context: ./FriendShipApi
+      dockerfile: Dockerfile
+    ports:
+      - "7099:7099"
+      - "5176:5176"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=https://+:7099;http://+:5176
+    volumes:
+      - ./FriendShipApi:/app
+      - /app/bin
+      - /app/obj
+    networks:
+      - friendship-network
+
+  # Основное приложение
+  friendship-app:
+    build:
+      context: ./FriendShipApp
+      dockerfile: Dockerfile
+    ports:
+      - "7167:7167"
+      - "5250:5250"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=https://+:7167;http://+:5250
+    volumes:
+      - ./FriendShipApp:/app
+      - /app/bin
+      - /app/obj
+    networks:
+      - friendship-network
+
+  # Фронтенд проект
+  friendship-frontend:
+    build:
+      context: ./friendship-frontend
+      dockerfile: Dockerfile
+    ports:
+      - "5173:5173"
+    environment:
+      - VITE_API_URL=https://localhost:7099
+    volumes:
+      - ./friendship-frontend:/app
+      - /app/node_modules
+    networks:
+      - friendship-network
+    depends_on:
+      - friendship-api
+
+networks:
+  friendship-network:
+    driver: bridge
+
+volumes:
+  friendship-api-data:
+  friendship-app-data:
+  friendship-frontend-data:
