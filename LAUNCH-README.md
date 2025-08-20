@@ -5,7 +5,7 @@
 FriendShip - это учебный проект, демонстрирующий различные способы развёртывания ASP.NET Core и React.js приложений:
 
 - **FriendShipApp** - основное приложение (один хост)
-- **FriendShipApi** - отдельный API проект  
+- **FriendShipApi** - отдельный API проект
 - **friendship-frontend** - отдельный фронтенд на Vite
 
 ## 🎯 Цель
@@ -306,7 +306,7 @@ make status
 
 ### Логи проектов
 - **API**: логи в консоли FriendShipApi
-- **Frontend**: логи в консоли friendship-frontend  
+- **Frontend**: логи в консоли friendship-frontend
 - **Main App**: логи в консоли FriendShipApp
 
 ## 🔄 Цикл разработки
