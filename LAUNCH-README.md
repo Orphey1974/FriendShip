@@ -21,6 +21,51 @@ FriendShip - это учебный проект, демонстрирующий 
 - **Node.js 18+** - [Скачать](https://nodejs.org/)
 - **Git** - [Скачать](https://git-scm.com/)
 
+## 🔐 Настройка HTTPS сертификатов
+
+**⚠️ ВАЖНО: Перед первым запуском необходимо настроить HTTPS сертификаты!**
+
+### Автоматическая настройка:
+
+#### Windows:
+```bash
+# Batch файл
+setup-https.bat
+
+# PowerShell
+.\setup-https.ps1
+```
+
+#### Linux/macOS:
+```bash
+make setup-https
+```
+
+### Ручная настройка:
+```bash
+# Очистка старых сертификатов
+dotnet dev-certs https --clean
+
+# Создание и доверие нового сертификата
+dotnet dev-certs https --trust
+
+# Проверка статуса
+dotnet dev-certs https --check --trust
+```
+
+### Если возникают проблемы:
+```bash
+# Принудительная очистка
+dotnet dev-certs https --clean --force
+
+# Пересоздание сертификата
+dotnet dev-certs https --clean
+dotnet dev-certs https --trust
+
+# Проверка в браузере
+# Откройте https://localhost:7099 и подтвердите доверие сертификату
+```
+
 ## 🚀 Способы запуска
 
 ### 1. 🪟 Windows (Batch файл)
@@ -147,14 +192,20 @@ pkill -f "node"
 
 ## 📱 Ручной запуск
 
-### Шаг 1: API проект
+### Шаг 1: Настройка HTTPS (только при первом запуске)
+```bash
+# Настройка сертификатов
+dotnet dev-certs https --trust
+```
+
+### Шаг 2: API проект
 ```bash
 cd FriendShipApi
 dotnet run --launch-profile https
 # API будет доступен на https://localhost:7099
 ```
 
-### Шаг 2: Фронтенд проект
+### Шаг 3: Фронтенд проект
 ```bash
 cd friendship-frontend
 npm install
@@ -162,7 +213,7 @@ npm run dev
 # Frontend будет доступен на http://localhost:5173
 ```
 
-### Шаг 3: Основное приложение
+### Шаг 4: Основное приложение
 ```bash
 cd FriendShipApp
 dotnet run
@@ -192,6 +243,16 @@ curl https://localhost:7099/weatherforecast
 
 ## 🚨 Устранение неполадок
 
+### Проблема: HTTPS сертификат не найден
+```bash
+# Очистка и пересоздание сертификата
+dotnet dev-certs https --clean
+dotnet dev-certs https --trust
+
+# Или используйте автоматическую настройку:
+.\setup-https.bat
+```
+
 ### Проблема: Порт занят
 ```bash
 # Windows
@@ -207,6 +268,9 @@ kill -9 <PID>
 ```bash
 # Создание доверенного сертификата
 dotnet dev-certs https --trust
+
+# Проверка статуса
+dotnet dev-certs https --check --trust
 ```
 
 ### Проблема: Зависимости не установлены
@@ -248,11 +312,12 @@ make status
 ## 🔄 Цикл разработки
 
 ### Типичный рабочий процесс:
-1. **Запуск**: `.\start-solution.bat` или `make start-all`
-2. **Разработка**: работа с кодом
-3. **Тестирование**: проверка в браузере
-4. **Остановка**: `.\stop-solution.bat` или `make stop-solution`
-5. **Повтор**: возврат к шагу 1
+1. **Настройка HTTPS** (только при первом запуске): `.\setup-https.bat`
+2. **Запуск**: `.\start-solution.bat` или `make start-all`
+3. **Разработка**: работа с кодом
+4. **Тестирование**: проверка в браузере
+5. **Остановка**: `.\stop-solution.bat` или `make stop-solution`
+6. **Повтор**: возврат к шагу 2
 
 ## 🎉 Результат
 
@@ -270,6 +335,7 @@ Frontend будет отображать прогноз погоды, получ
 - [Документация Vite](https://vitejs.dev/)
 - [Документация React](https://react.dev/)
 - [Документация CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS)
+- [Настройка HTTPS в .NET](https://docs.microsoft.com/dotnet/core/tools/dotnet-dev-certs)
 
 ---
 

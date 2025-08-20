@@ -1,7 +1,7 @@
 # FriendShip Solution Makefile
 # Команды для запуска всех проектов
 
-.PHONY: help start-api start-frontend start-main start-all stop-all clean stop-solution
+.PHONY: help start-api start-frontend start-main start-all stop-all clean stop-solution setup-https
 
 # Цвета для вывода
 GREEN = \033[0;32m
@@ -22,6 +22,12 @@ help: ## Показать справку по командам
 	@echo "  API:        https://localhost:7099"
 	@echo "  Frontend:   http://localhost:5173"
 	@echo "  Main App:   https://localhost:7167"
+
+setup-https: ## Настроить HTTPS сертификаты для разработки
+	@echo "$(YELLOW)🔐 Настройка HTTPS сертификатов...$(NC)"
+	@dotnet dev-certs https --clean || true
+	@dotnet dev-certs https --trust
+	@echo "$(GREEN)✅ HTTPS сертификаты настроены$(NC)"
 
 start-api: ## Запустить API проект
 	@echo "$(YELLOW)[1/3] Запуск API проекта...$(NC)"
